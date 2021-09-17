@@ -20,17 +20,60 @@
         <cloud-micro-common.version>1.0-SNAPSHOT</cloud-micro-common.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <springboot.version>2.3.11.RELEASE</springboot.version>
-        <okhttp.versio>3.14.4</okhttp.versio>
+        <okhttp.version>10.11</okhttp.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--spring=boot-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${springboot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-start-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--spring cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--cloud-micro通用模块-->
             <dependency>
                 <groupId>cloud-micro-common</groupId>
                 <artifactId>cloud-micro-common</artifactId>
                 <version>${cloud-micro-common.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
