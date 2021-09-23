@@ -12,6 +12,7 @@
         <module>cloud-micro-common</module>
         <module>cloud-micro-webapi</module>
         <module>cloud-micro-data</module>
+        <module>cloud-micro-server</module>
     </modules>
     <packaging>pom</packaging>
 
